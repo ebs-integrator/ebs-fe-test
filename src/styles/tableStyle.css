@@ -22,3 +22,45 @@ th {
 tr {
   background-color: #f2f2f2;
 }
+
+.products {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  
+}
+
+.btn-wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 70px;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0px;
+}
+
+.actions p {
+  padding: 0 5px;
+}
+
+.actions button {
+  height: fit-content;
+  width: fit-content;
+}
+
+.actions button:hover {
+  cursor: pointer;
+}
+
+.actions .plus-btn {
+  margin-left: 10px;
+}
+
+.actions .add-to-cart {
+  margin-left: 30px;
+}

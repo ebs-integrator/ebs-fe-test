@@ -1,4 +1,5 @@
-﻿export interface IProducts {
+﻿export interface IProduct {
+  quantity?: number;
   id: number;
   category: {
     id: string;
