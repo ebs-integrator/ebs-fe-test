@@ -19,6 +19,9 @@ const App: React.FC = () => {
     setAdded((prevState) => [...prevState, item]);
   };
 
+  const removeFromCart = (itemId: number) => {
+    setAdded((added) => added.filter(elem => elem.id !== itemId));
+  }
 
   const showBtn = () => {
     if(button.current) {
@@ -48,7 +51,7 @@ const App: React.FC = () => {
       </div>
       <Switch>
         <Route exact path="/">
-          <Products addToCart={addToCart} />
+          <Products addToCart={addToCart} removeFromCart={removeFromCart}/>
         </Route>
         <Route path="/cart">
           <CartContext.Provider value={added}>

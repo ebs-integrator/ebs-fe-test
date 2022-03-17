@@ -9,9 +9,10 @@ import cart from '../assets/cart.png';
 
 interface IProductsProps {
   addToCart: (item: IProduct) => void;
+  removeFromCart: (id: number) => void;
 }
 
-const Products: React.FC<IProductsProps> = ({addToCart}) => {
+const Products: React.FC<IProductsProps> = ({addToCart, removeFromCart}) => {
 
   const [products, setProducts] = useState<IProduct[]>([]);
 
@@ -67,7 +68,7 @@ const Products: React.FC<IProductsProps> = ({addToCart}) => {
                         <img className='cart-img' src={cart} alt="cart" />
                         +
                       </button>
-                      <button className='remove-from-cart'>
+                      <button className='remove-from-cart' onClick={() => removeFromCart(item.id)}>
                         <img className='cart-img-rem' src={cart} alt="cart" />
                         -
                       </button>

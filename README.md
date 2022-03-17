@@ -39,7 +39,7 @@ Keep away from unnecessary dependecies, keep it simple.
       <li>Fetch list of products.</li>      <!-- done-->
       <li>Show all the products in a table.</li>    <!-- done-->
       <li>Add possibility to add in cart.</li>    <!-- done-->
-      <li>Add possibility to remove from cart directly in list of products table.</li>
+      <li>Add possibility to remove from cart directly in list of products table.</li>  <!-- done-->
     </ul>
   </li>
 
