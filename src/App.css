@@ -28,6 +28,7 @@
     outline: none;
     background-color: transparent;
     font-size: 17px;
+    visibility: hidden;
 }
 
 .link-btn {

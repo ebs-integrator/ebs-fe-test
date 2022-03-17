@@ -1,4 +1,4 @@
-﻿import React, { createContext, useState, useRef } from 'react';
+﻿import React, { createContext, useState, useRef, useEffect } from 'react';
 import { Switch, Route, Link, useHistory } from 'react-router-dom';
 
 import { IProduct } from 'interfaces';
@@ -52,7 +52,7 @@ const App: React.FC = () => {
         </Route>
         <Route path="/cart">
           <CartContext.Provider value={added}>
-            <Cart />
+            <Cart showBtn={showBtn}/>
           </CartContext.Provider>
         </Route>
       </Switch>

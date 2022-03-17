@@ -2,6 +2,7 @@
 import axios from 'axios';
 
 import { IProduct } from 'interfaces';
+import { substractQuantity, addQuantity } from '../functions/changeQuantity';
 
 import '../styles/tableStyle.css';
 import cart from '../assets/cart.png';
@@ -28,31 +29,15 @@ const Products: React.FC<IProductsProps> = ({addToCart}) => {
     }
   }, []);
 
-  const substractQuantity = (idx: number) => {
-    let tempState = [...products];
-    let tempElement = { ...products[idx] }; 
-    if(products[idx].quantity) {
-      if(tempElement.quantity && tempElement.quantity !== 0) {
-        tempElement.quantity = tempElement.quantity - 1
-      }
-    }
-    tempState[idx] = tempElement;
-    setProducts(tempState);
+  const subsQuantity = (idx: number) => {
+    const list = substractQuantity(idx, products)
+    setProducts(list);
   }
 
-  const addQuantity = (idx: number) => {
-    let tempState = [...products];
-    let tempElement = { ...products[idx] }; 
-    if(products[idx].quantity) {
-      if(tempElement.quantity) {
-        tempElement.quantity = tempElement.quantity + 1
-      }
-    }
-    else {
-      tempElement.quantity = 1
-    }
-    tempState[idx] = tempElement;
-    setProducts(tempState);
+
+  const addingQuantity = (idx: number) => {
+    const list = addQuantity(idx, products);
+    setProducts(list);
   }
 
   return (
@@ -75,9 +60,9 @@ const Products: React.FC<IProductsProps> = ({addToCart}) => {
                     <td>{item.name}</td>
                     <td>{item.price}</td>
                     <td className='actions'>
-                      <button className='plus-btn' onClick={() => addQuantity(idx)}>+</button>
+                      <button className='plus-btn' onClick={() => addingQuantity(idx)}>+</button>
                       <p>{item.quantity ? item.quantity : 0}</p>
-                      <button onClick={() => substractQuantity(idx)}>-</button>
+                      <button onClick={() => subsQuantity(idx)}>-</button>
                       <button className='add-to-cart' onClick={() => addToCart(item)}>
                         <img className='cart-img' src={cart} alt="cart" />
                         +

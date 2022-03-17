@@ -45,10 +45,10 @@ Keep away from unnecessary dependecies, keep it simple.
 
   <li>Add posibility to sort products by <b>categories</b> and price by <b>desc</b> or <b>asc</b>.</li>
 
-  <li>Create page with list of added products.
+  <li>Create page with list of added products. <!-- done-->
     <ul>
-      <li>Show all the added products in a table.</li>
-      <li>Add possibility to change quantity of added products.</li>
+      <li>Show all the added products in a table.</li>  <!-- done-->
+      <li>Add possibility to change quantity of added products.</li>   <!-- done-->
       <li>Add possibility to remove added product.</li>   <!-- done-->
     </ul>
   </li>
