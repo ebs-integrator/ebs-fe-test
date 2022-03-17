@@ -36,9 +36,9 @@ Keep away from unnecessary dependecies, keep it simple.
 <ol>
   <li>Create page with list of products.
     <ul>
-      <li>Fetch list of products.</li>
-      <li>Show all the products in a table.</li>
-      <li>Add possibility to add in cart.</li>
+      <li>Fetch list of products.</li>      <!-- done-->
+      <li>Show all the products in a table.</li>    <!-- done-->
+      <li>Add possibility to add in cart.</li>    <!-- done-->
       <li>Add possibility to remove from cart directly in list of products table.</li>
     </ul>
   </li>
@@ -49,7 +49,7 @@ Keep away from unnecessary dependecies, keep it simple.
     <ul>
       <li>Show all the added products in a table.</li>
       <li>Add possibility to change quantity of added products.</li>
-      <li>Add possibility to remove added product.</li>
+      <li>Add possibility to remove added product.</li>   <!-- done-->
     </ul>
   </li>
 </ol>

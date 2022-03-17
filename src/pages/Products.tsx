@@ -1,10 +1,10 @@
 ﻿import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 import { IProduct } from 'interfaces';
 
 import '../styles/tableStyle.css';
+import cart from '../assets/cart.png';
 
 interface IProductsProps {
   addToCart: (item: IProduct) => void;
@@ -56,12 +56,7 @@ const Products: React.FC<IProductsProps> = ({addToCart}) => {
   }
 
   return (
-    <div className="products">
-      <div className='btn-wrapper'>
-          <Link to='/cart'>
-            <button>Cart</button>
-          </Link>      
-      </div>
+    <div className="products" style={{height: '100%'}}>
       <table className="products-list">
         <thead>
           <tr className="rows">
@@ -83,7 +78,14 @@ const Products: React.FC<IProductsProps> = ({addToCart}) => {
                       <button className='plus-btn' onClick={() => addQuantity(idx)}>+</button>
                       <p>{item.quantity ? item.quantity : 0}</p>
                       <button onClick={() => substractQuantity(idx)}>-</button>
-                      <button className='add-to-cart' onClick={() => addToCart(item)}>Add to cart</button>
+                      <button className='add-to-cart' onClick={() => addToCart(item)}>
+                        <img className='cart-img' src={cart} alt="cart" />
+                        +
+                      </button>
+                      <button className='remove-from-cart'>
+                        <img className='cart-img-rem' src={cart} alt="cart" />
+                        -
+                      </button>
                     </td>
                   </tr>
                 );

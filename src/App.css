@@ -1,0 +1,46 @@
+﻿.app {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    background-color: beige;
+}
+
+.cart-btn {
+    height: 40px;
+    width: 40px;
+    padding: 3px 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.back-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 30px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    font-size: 17px;
+}
+
+.link-btn {
+    float: right;
+    margin: 15px;
+    margin-right: 30px;
+}
+  
+.cart-btn img {
+    height: 90%;
+    width: auto;
+}
+
+button:hover {
+    cursor: pointer;
+}

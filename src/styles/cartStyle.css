@@ -2,3 +2,52 @@
     height: 100%;
     width: 100%;
 }
+
+table {
+    border-collapse: collapse;
+    border: 1px solid black;
+  }
+  
+  table.cart-list {
+    table-layout: auto;
+    width: 100%;
+  }
+  
+  th,
+  td,
+  tr {
+    border: 1px solid black;
+    padding: 10px 20px;
+  }
+  
+  th {
+    background-color: #e6e6e6;
+  }
+  
+  tr {
+    background-color: #f2f2f2;
+  }
+  
+  .cart-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .cart-actions p {
+    padding: 0 5px;
+  }
+  
+  .cart-actions button {
+    height: fit-content;
+    width: fit-content;
+  }
+
+  .cart-actions .rem-btn {
+      margin-left: 25px;
+  }
+  
+  .cart-actions .plus-btn {
+    margin-left: 10px;
+  }
