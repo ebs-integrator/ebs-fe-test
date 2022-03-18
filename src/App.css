@@ -19,6 +19,20 @@
     align-items: center;
 }
 
+.navbar .nr-of-prod, .navbar .nr-of-added {
+    position: absolute;
+    left: 95%;
+    top: 5%;
+    background-color: brown;
+    width: fit-content;
+    height: auto;
+    padding: 5px 7px;
+    text-align: center;
+    border-radius: 50%;
+    color: white;
+    font-size: 12px;
+}
+
 .back-btn {
     position: absolute;
     top: 50%;

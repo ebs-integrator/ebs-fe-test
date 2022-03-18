@@ -34,6 +34,16 @@ tr {
   padding: 0 5px;
 }
 
+.up-price {
+  transform: rotate(-90deg);
+  margin-right: 15px;
+}
+
+.down-price {
+  transform: rotate(90deg);
+  margin-left: 15px;
+}
+
 .actions button {
   height: fit-content;
   width: fit-content;
@@ -76,4 +86,12 @@ tr {
 .cart-img, .cart-img-rem {
   height: 90%;
   width: auto;
+}
+
+.rows .az {
+  margin-right: 5px;
+}
+
+.rows .za {
+  margin-left: 5px;
 }

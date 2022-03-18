@@ -1,4 +1,4 @@
-﻿import React, { createContext, useState, useRef, useEffect } from 'react';
+﻿import React, { createContext, useState, useRef } from 'react';
 import { Switch, Route, Link, useHistory } from 'react-router-dom';
 
 import { IProduct } from 'interfaces';
@@ -15,8 +15,11 @@ const App: React.FC = () => {
   const history = useHistory();
   const button = useRef<HTMLButtonElement>(null);
 
-  const addToCart = (item: IProduct) => {
-    setAdded((prevState) => [...prevState, item]);
+  const addToCart = (item: IProduct):IProduct => {
+    if(item.quantity) {
+      setAdded((prevState) => [...prevState, item]);
+    }
+    return item;
   };
 
   const removeFromCart = (itemId: number) => {
@@ -36,6 +39,14 @@ const App: React.FC = () => {
     }
   }
 
+  const substractingQuantity = (list: IProduct[]) => {
+    setAdded(list);
+  }
+
+  const addingQuantity = (list: IProduct[]) => {
+    setAdded(list);
+  }
+
   return (
     <div className="app">
       <div className='navbar'>
@@ -44,6 +55,7 @@ const App: React.FC = () => {
             <img src={cart} alt="cart" />
           </button>
         </Link>
+        <p className='nr-of-added'>{added.length}</p>
         <button 
           className='back-btn' 
           onClick={hideBtn}
@@ -55,7 +67,11 @@ const App: React.FC = () => {
         </Route>
         <Route path="/cart">
           <CartContext.Provider value={added}>
-            <Cart showBtn={showBtn}/>
+            <Cart 
+              showBtn={showBtn} 
+              removeFromCart={removeFromCart} 
+              substractingQuantity={substractingQuantity}
+              addingQuantity={addingQuantity}/>
           </CartContext.Provider>
         </Route>
       </Switch>

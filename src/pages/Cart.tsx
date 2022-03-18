@@ -1,4 +1,4 @@
-﻿import React, { useContext, useEffect, useState } from "react";
+﻿import React, { useContext, useEffect } from "react";
 
 import { CartContext } from "App";
 import { IProduct } from "interfaces";
@@ -8,29 +8,27 @@ import '../styles/cartStyle.css';
 
 interface IProps {
   showBtn: () => void;
+  removeFromCart: (itemId: number) => void;
+  substractingQuantity: (list: IProduct[]) => void;
+  addingQuantity: (list: IProduct[]) => void;
 }
 
-const Cart: React.FC<IProps> = ({showBtn}) => {
+const Cart: React.FC<IProps> = ({showBtn, removeFromCart, substractingQuantity, addingQuantity}) => {
 
     const contextValue = useContext(CartContext);
-    const [listOfAdded, setListOfAdded] = useState(contextValue);
-
-    const removeItem = (itemId: number) => {
-      setListOfAdded((listOfAdded) => listOfAdded.filter(elem => elem.id !== itemId));
-    }
 
     useEffect(() => {
       showBtn();
     }, [showBtn])
 
     const subsQuantity = (idx: number) => {
-     const list = substractQuantity(idx, listOfAdded);
-     setListOfAdded(list);
+     const list = substractQuantity(idx, contextValue);
+     substractingQuantity(list);
     }
 
-    const addingQuantity = (idx: number) => {
-      const list = addQuantity(idx, listOfAdded);
-      setListOfAdded(list);
+    const addsQuantity = (idx: number) => {
+      const list = addQuantity(idx, contextValue);
+      addingQuantity(list);
     }
 
     return(
@@ -46,8 +44,8 @@ const Cart: React.FC<IProps> = ({showBtn}) => {
           </tr>
         </thead>
         <tbody>
-          {listOfAdded.length > 0
-            ? listOfAdded.map((item: IProduct, idx: number) => {
+          {contextValue.length > 0
+            ? contextValue.map((item: IProduct, idx: number) => {
                 return (
                   <tr key={idx}>
                     <td>{item.category.name}</td>
@@ -55,10 +53,10 @@ const Cart: React.FC<IProps> = ({showBtn}) => {
                     <td>{item.quantity}</td>
                     <td>{item.quantity ? (parseFloat((item.price * item.quantity).toString()).toFixed(2)) : null}</td>
                     <td className='cart-actions'>
-                      <button className="plus-btn" onClick={() => addingQuantity(idx)}>+</button>
+                      <button className="plus-btn" onClick={() => addsQuantity(idx)}>+</button>
                       <p>{item.quantity ? item.quantity : 0}</p>
                       <button onClick={() => subsQuantity(idx)}>-</button>
-                      <button className="rem-btn" onClick={() => removeItem(item.id)}>Remove</button>
+                      <button className="rem-btn" onClick={() => removeFromCart(item.id)}>Remove</button>
                     </td>
                   </tr>
                 );

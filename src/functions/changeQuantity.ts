@@ -25,4 +25,16 @@ export const addQuantity = (idx: number, products: Array<IProduct>):Array<IProdu
     }
     tempState[idx] = tempElement;
     return tempState;
-}  
+} 
+
+export const resetQuantity = (idx: number, products: Array<IProduct>):Array<IProduct> => {
+    let tempState = [...products];
+    let tempElement = { ...products[idx] }; 
+    if(products[idx].quantity) {
+      if(tempElement.quantity) {
+        tempElement.quantity = 0
+      }
+    }
+    tempState[idx] = tempElement;
+    return tempState;
+}
