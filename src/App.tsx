@@ -3,18 +3,30 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import './styles/index.css';
 import { CartContext } from 'context/CartContext';
+import productService from 'services/product';
 import cartService from 'services/cart';
 import Products from 'pages/Products';
 import Cart from 'pages/Cart';
 import Header from 'components/Header';
+import IProduct from 'models/IProduct';
+import ICategory from 'models/ICategory';
 import ICart from 'models/ICart';
 
 const App: React.FC = () => {
+  const [products, setProducts] = React.useState<Array<IProduct>>([]);
+  const [categories, setCategories] = React.useState<Array<ICategory>>([]);
   const [cart, setCart] = React.useState<ICart>({ products: [] });
 
   React.useEffect(() => {
     (async () => {
-      setCart(cartService.getCart());
+      try {
+        const { data: _products } = await productService.getAllProductsAsync();
+        const { data: _categories } = await productService.getAllCategoriesAsync();
+
+        setCart(cartService.getCart());
+        setProducts(_products);
+        setCategories(_categories);
+      } catch (error) {}
     })();
   }, []);
 
@@ -24,7 +36,7 @@ const App: React.FC = () => {
       <hr />
       <Switch>
         <Route path="/products">
-          <Products />
+          <Products products={products} categories={categories} />
         </Route>
         <Route path="/cart">
           <Cart />

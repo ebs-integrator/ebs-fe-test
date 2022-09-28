@@ -1,31 +1,21 @@
 import React from 'react';
 
 import { CartContext } from 'context/CartContext';
-import productService from 'services/product';
 import cartService from 'services/cart';
 import IProduct from 'models/IProduct';
 import ICategory from 'models/ICategory';
 import Dropdown from 'components/Dropdown';
 
-const Products: React.FC = () => {
-  const [products, setProducts] = React.useState<Array<IProduct>>([]);
-  const [categories, setCategories] = React.useState<Array<ICategory>>([]);
+interface ProductsProps {
+  products: Array<IProduct>;
+  categories: Array<ICategory>;
+}
+
+const Products: React.FC<ProductsProps> = ({ products, categories }) => {
   const [selectedCategory, setSelectedCategory] = React.useState<ICategory>();
   const [priceOrder, setPriceOrder] = React.useState<'ASC' | 'DESC'>('ASC');
 
   const { setCart } = React.useContext(CartContext);
-
-  React.useEffect(() => {
-    (async () => {
-      try {
-        const { data: _products } = await productService.getAllProductsAsync();
-        const { data: _categories } = await productService.getAllCategoriesAsync();
-
-        setProducts(_products);
-        setCategories(_categories);
-      } catch (error) {}
-    })();
-  }, []);
 
   const onPriceClick = () => {
     setPriceOrder((prevState) => (prevState === 'ASC' ? 'DESC' : 'ASC'));
