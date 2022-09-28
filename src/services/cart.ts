@@ -13,6 +13,30 @@ const addToCart = (product: IProduct): ICart => {
   const cart: ICart = getCart();
 
   const existedProduct = cart.products.find((p) => p.id === product.id);
+
+  if (existedProduct) return cart;
+
+  cart.products.push({ ...product, quantity: 1 });
+
+  localStorage.setItem(CART, JSON.stringify(cart));
+
+  return cart;
+};
+
+const removeFromCart = (productId: number): ICart => {
+  const cart: ICart = getCart();
+
+  cart.products = cart.products.filter((p) => p.id !== productId);
+
+  localStorage.setItem(CART, JSON.stringify(cart));
+
+  return cart;
+}
+
+const increaseQuantity = (product: IProduct): ICart => {
+  const cart: ICart = getCart();
+
+  const existedProduct = cart.products.find((p) => p.id === product.id);
   if (existedProduct) {
     existedProduct.quantity += 1;
   } else {
@@ -24,17 +48,17 @@ const addToCart = (product: IProduct): ICart => {
   return cart;
 };
 
-const removeFromCart = (product: IProduct): ICart => {
+const decreaseQuantity = (productId: number): ICart => {
   const cart: ICart = getCart();
 
-  const existedProduct = cart.products.find((p) => p.id === product.id);
+  const existedProduct = cart.products.find((p) => p.id === productId);
 
   if (!existedProduct) return cart;
 
   if (existedProduct.quantity > 1) {
     existedProduct.quantity -= 1;
   } else {
-    cart.products = cart.products.filter((p) => p.id !== product.id);
+    cart.products = cart.products.filter((p) => p.id !== productId);
   }
 
   localStorage.setItem(CART, JSON.stringify(cart));
@@ -46,4 +70,6 @@ export default {
   getCart,
   addToCart,
   removeFromCart,
+  increaseQuantity,
+  decreaseQuantity,
 };

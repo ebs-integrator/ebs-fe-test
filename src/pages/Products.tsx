@@ -59,16 +59,9 @@ const Products: React.FC = () => {
                 <td>{product.name}</td>
                 <td>{product.price}</td>
                 <td>
-                  <div
-                    style={{
-                      display: 'flex',
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <button onClick={() => setCart(cartService.removeFromCart(product))}>(-)</button>
-                    <span> Select </span>
+                  <div className="actions">
+                    <button onClick={() => setCart(cartService.removeFromCart(product.id))}>(-)</button>
+                    <button>Select</button> {/* There is no description what Select do */}
                     <button onClick={() => setCart(cartService.addToCart(product))}>(+)</button>
                   </div>
                 </td>
