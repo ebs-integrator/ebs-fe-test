@@ -1,15 +1,19 @@
 import React from 'react';
 
-import productsService from 'services/products';
+import productService from 'services/product';
+import { CartContext } from 'context/CartContext';
+import cartService from 'services/cart';
 import IProduct from 'models/IProduct';
 
 const Products: React.FC = () => {
   const [products, setProducts] = React.useState<Array<IProduct>>([]);
 
+  const { setCart } = React.useContext(CartContext);
+
   React.useEffect(() => {
     (async () => {
       try {
-        const { data } = await productsService.getAllProducts();
+        const { data } = await productService.getAllProductsAsync();
         setProducts(data);
       } catch (error) {}
     })();
@@ -28,11 +32,15 @@ const Products: React.FC = () => {
         </thead>
         <tbody>
           {products.map((product) => (
-            <tr>
+            <tr key={product.id}>
               <td>{product.category.name}</td>
               <td>{product.name}</td>
               <td>{product.price}</td>
-              <td>(-) Select (+)</td>
+              <td>
+                <button onClick={() => setCart(cartService.removeFromCart(product))}>(-)</button>
+                <span> Select </span>
+                <button onClick={() => setCart(cartService.addToCart(product))}>(+)</button>
+              </td>
             </tr>
           ))}
         </tbody>
