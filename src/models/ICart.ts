@@ -1,5 +1,5 @@
-import IProduct from "./IProduct";
+import IProduct from './IProduct';
 
 export default interface ICart {
-    products: Array<IProduct & { quantity: number }>;
+  products: Array<IProduct & { quantity: number }>;
 }
